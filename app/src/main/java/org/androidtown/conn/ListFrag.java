@@ -56,10 +56,15 @@ public class ListFrag extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 ListItem item = (ListItem) adapter.getItem(position);
                 Intent intent = new Intent(getActivity(), DetailActivity.class);
-                intent.putExtra("writer", item.getAge());
-                intent.putExtra("title", item.getName());
+
+//                intent.putExtra("writer", item.getAge());
+                intent.putExtra("writer", item.getWriter());
+//                intent.putExtra("title", item.getName());
+                intent.putExtra("title", item.getTitle());
+
 //                intent.putExtra("content", item.getMobile());
-                intent.putExtra("day", item.getMobile());
+//                intent.putExtra("day", item.getMobile());
+                intent.putExtra("day", item.getDay());
 
                 startActivityForResult(intent, REQUEST_CODE_ANOTHER);
             }
@@ -130,9 +135,14 @@ public class ListFrag extends Fragment {
             ListItemView view = new ListItemView(getActivity());
 
             ListItem item = items.get(position);
-            view.setName(item.getName());
-            view.setMobile(item.getMobile());
-            view.setAge(item.getAge());
+//            view.setName(item.getName());
+            view.setTitle(item.getTitle());
+//            view.setMobile(item.getMobile());
+            view.setDay(item.getDay());
+
+//            view.setAge(item.getAge());
+            view.setWriter(item.getWriter());
+
             view.setImage(item.getResId());
 
 //            view.setContent(item.getContent());

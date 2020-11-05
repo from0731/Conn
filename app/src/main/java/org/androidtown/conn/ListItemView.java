@@ -7,13 +7,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-/**
- * Created by user on 2016-08-10.
- */
+
 public class ListItemView extends LinearLayout {
-    TextView textView;
-    TextView textView2;
-    TextView textView3;
+    TextView TextView1;
+    TextView TextView2;
+    TextView TextView3;
     ImageView imageView;
 
     public ListItemView(Context context) {
@@ -30,25 +28,38 @@ public class ListItemView extends LinearLayout {
 
     public void init(Context context) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.singer_item, this, true);
+        inflater.inflate(R.layout.listitem, this, true);
 
-        textView = (TextView) findViewById(R.id.textView);
-        textView2 = (TextView) findViewById(R.id.textView2);
-        textView3 = (TextView) findViewById(R.id.textView3);
+        TextView1 = (TextView) findViewById(R.id.textView1);
+        TextView2 = (TextView) findViewById(R.id.textView2);
+        TextView3 = (TextView) findViewById(R.id.textView3);
         imageView = (ImageView) findViewById(R.id.imageView);
     }
 
-    public void setName(String name) {
-        textView.setText(name);
+    public void setTitle(String title) {
+//        TextView1.setText(name);
+        TextView1.setText(title);
     }
 
-    public void setMobile(String mobile) {
-        textView2.setText(mobile);
+
+//    public void setMobile(String mobile) {
+//        TextView2.setText(mobile);
+//    }
+
+    public void setDay(String day) {
+        TextView2.setText(day);
     }
 
-    public void setAge(String age) {
-        textView3.setText(String.valueOf(age));
+
+//    public void setAge(String age) {
+//        TextView3.setText(String.valueOf(age));
+//    }
+
+    public void setWriter(String writer) {
+        TextView3.setText(writer);
     }
+
+
 
     public void setImage(int resId) {
         imageView.setImageResource(resId);
