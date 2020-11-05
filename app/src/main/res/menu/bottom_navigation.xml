@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_today"
+        android:enabled="true"
+        android:icon="@drawable/list"
+        android:title="@string/title_list"/>
+
+    <item
+        android:id="@+id/action_add"
+        android:enabled="true"
+        android:icon="@drawable/edit"
+        android:title="@string/title_write"/>
+
+    <item
+        android:id="@+id/action_push"
+        android:enabled="true"
+        android:icon="@drawable/star"
+        android:title="@string/title_push"/>
+
+    <item
+        android:id="@+id/action_setting"
+        android:enabled="true"
+        android:icon="@drawable/chat"
+        android:title="@string/title_setting"/>
+
+</menu>
