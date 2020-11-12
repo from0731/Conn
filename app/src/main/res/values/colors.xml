@@ -14,4 +14,12 @@
     <color name="colorAccent">#FF4081</color>
     <color name="bgBottomNavigation">#FFFFFF</color>
 
+    //리사이클 뷰로 변경 관련
+    <color name="secondary">#FF4081</color>
+    <color name="primary">#2d2d2d</color>
+    <color name="accent">#33b5e5</color>
+    <color name="divider">#CCC</color>
+    <color name="icons">#FFF</color>
+    <color name="item_background">#FFF</color>
+
 </resources>

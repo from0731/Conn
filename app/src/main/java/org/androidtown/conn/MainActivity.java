@@ -6,19 +6,24 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fm;
     private FragmentTransaction ft;
-    private ListFrag frag1;
-    private CreateFrag frag2Create;
-    private Frag3 frag3;
-    private Frag4 frag4;
+    private FragList frag1;
+    private FragCreate frag2Create;
+    private FragPushList frag3;
+    private FragChatting fragChatting;
 
     public static final int REQUEST_CODE_ANOTHER = 1001;
 
@@ -31,38 +36,61 @@ public class MainActivity extends AppCompatActivity {
         setTitle("리포터");
 
         bottomNavigationView = findViewById(R.id.bottomNavi);
+
+        String TAG = "로그";
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+
+                        // Log and toast
+                        String msg = getString(R.string.msg_token_fmt, token);
+                        Log.d(TAG, msg);
+//                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-                switch (menuItem.getItemId()) {
-                    case R.id.action_today:
-                        setTitle("목록");
-                        setFrag(0);
-                        break;
-                    case R.id.action_add:
-                        setTitle("작성");
-                        setFrag(1);
-                        break;
-                    case R.id.action_push:
-                        setTitle("알림");
-                        setFrag(2);
-                        break;
-                    case R.id.action_setting:
-                        setTitle("채팅");
-                        setFrag(3);
-                        break;
+            switch (menuItem.getItemId()) {
+                case R.id.action_today:
+                    setTitle("목록");
+                    setFrag(0);
+                    break;
+                case R.id.action_add:
+                    setTitle("작성");
+                    setFrag(1);
+                    break;
+                case R.id.action_push:
+                    setTitle("알림");
+                    setFrag(2);
+                    break;
+                case R.id.action_setting:
+                    setTitle("채팅");
+                    setFrag(3);
+                    break;
                 }
                 return true;
             }
         });
 
-        frag1 = new ListFrag();
-        frag2Create = new CreateFrag();
-        frag3 = new Frag3();
-        frag4 = new Frag4();
-        setFrag(3); // 첫 프래그먼트 화면 지정
+        frag1 = new FragList();
+        frag2Create = new FragCreate();
+        frag3 = new FragPushList();
+        fragChatting = new FragChatting();
+        setFrag(0); // 첫 프래그먼트 화면 지정
     }
 
     // 프레그먼트 교체
@@ -85,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 ft.commit();
                 break;
             case 3:
-                ft.replace(R.id.Main_Frame, frag4);
+                ft.replace(R.id.Main_Frame, fragChatting);
                 ft.commit();
                 break;
         }

@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import static android.app.Activity.RESULT_OK;
 
 
-public class CreateFrag extends Fragment {
+public class FragCreate extends Fragment {
 
     Button UploadBtn, Geobtn;
     EditText Writer, Title, Content, Maps;

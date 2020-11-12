@@ -11,7 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Task extends AsyncTask<String, Void, String> {
-    public static String ip ="172.30.1.4:8081"; //자신의 IP번호
+    public static String ip ="172.30.1.6:8081"; //자신의 IP번호
     String sendMsg, receiveMsg;
         String serverip = "http://"+ip+"/Conn/list.jsp"; // 연결할 jsp주소
 
@@ -30,9 +30,17 @@ public class Task extends AsyncTask<String, Void, String> {
             OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
 
             if(sendMsg.equals("vision_write")){
-                sendMsg = "writer="+strings[0]+"&type="+strings[1] + "&title="+ strings[2] + "&content="+ strings[3];
+                sendMsg = "writer="+strings[0]+"&type="+strings[1]+"&title="+strings[2]+"&content="+strings[3];
+                Log.i("리스트 통신 결과", sendMsg);
             }else if(sendMsg.equals("vision_list")){
                 sendMsg = "&type="+strings[0];
+                Log.i("작성 통신 결과", sendMsg);
+            }else if(sendMsg.equals("push_write")){
+                sendMsg = "&type="+strings[0]+"&push_title="+strings[1]+"&push_body="+strings[2];
+                Log.i("푸시 통신 결과", sendMsg);
+            }else if(sendMsg.equals("push_list")){
+                sendMsg = "&type="+strings[0];
+                Log.i("푸시 통신 결과", sendMsg);
             }
 
             osw.write(sendMsg);

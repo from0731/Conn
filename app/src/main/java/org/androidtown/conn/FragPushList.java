@@ -6,36 +6,29 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+
 import java.util.ArrayList;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
-public class ListFrag extends Fragment {
+public class FragPushList extends Fragment {
 
     private View view;
     SingerAdapter adapter;
-    ArrayList<ListItem> items = new ArrayList<ListItem>();
+    ArrayList<PushListItem> items = new ArrayList<PushListItem>();
     ListView listView;
 
     public static final int REQUEST_CODE_ANOTHER = 1001;
-
-    //bottom navigation 관련 정의
-    private BottomNavigationView bottomNavigationView; // 바텀 네비게이션 뷰
-    private FragmentManager fm;
-    private FragmentTransaction ft;
-    private ListFrag frag1;
-    private CreateFrag frag2Create;
-    private Frag3 frag3;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,7 +39,7 @@ public class ListFrag extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_list, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.frag_pushlist, container, false);
         adapter = new SingerAdapter();
 
         listView = rootView.findViewById(R.id.listView);
@@ -54,27 +47,25 @@ public class ListFrag extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                ListItem item = (ListItem) adapter.getItem(position);
-                Intent intent = new Intent(getActivity(), DetailActivity.class);
 
-//                intent.putExtra("writer", item.getAge());
-                intent.putExtra("writer", item.getWriter());
-//                intent.putExtra("title", item.getName());
-                intent.putExtra("title", item.getTitle());
-
-//                intent.putExtra("content", item.getMobile());
-//                intent.putExtra("day", item.getMobile());
-                intent.putExtra("day", item.getDay());
-
-                startActivityForResult(intent, REQUEST_CODE_ANOTHER);
+//이벤트 리스트 클릭시 할 부분
+                PushListItem item = (PushListItem) adapter.getItem(position);
+//                Intent intent = new Intent(getActivity(), DetailActivity.class);
+//
+//                intent.putExtra("body", item.getBody());
+//                intent.putExtra("title", item.getTitle());
+//                intent.putExtra("day", item.getDay());
+//
+//                startActivityForResult(intent, REQUEST_CODE_ANOTHER);
+                Toast.makeText(getActivity(), item.getTitle(), Toast.LENGTH_SHORT).show();
             }
         });
 
-            String sendmsg = "vision_list";
+            String sendmsg = "push_list";
             String receiveMsg; //전체출력 result;
 
             try {
-                receiveMsg = new Task(sendmsg).execute("vision_list").get();//디비값을 가져오기
+                receiveMsg = new Task(sendmsg).execute("push_list").get();//디비값을 가져오기
                 Log.i("통신 결과", receiveMsg);
 
                 JSONObject jObject = new JSONObject(receiveMsg); // 가장 큰 JSONObject를 가져옵니다.
@@ -86,20 +77,18 @@ public class ListFrag extends Fragment {
                 for (int i = 0; i < jArray.length(); i++) {
                     JSONObject obj = jArray.getJSONObject(i);
 
-                    String wr = obj.getString("WR");
                     String day = obj.getString("DAY");
-                    String title = obj.getString("CON");
-//                    String content = obj.getString("CONTENT");
+                    String title = obj.getString("TITLE");
+                    String body = obj.getString("BODY");
 
-                    adapter.addItem(new ListItem(title, day, wr, R.drawable.singer8));
+                    adapter.addItem(new PushListItem(title, body, day));
                     listView.setAdapter(adapter);
 
                     adapter.notifyDataSetChanged();
 
-                    System.out.println("wr(" + i + "): " + wr);
+                    System.out.println("body(" + i + "): " + body);
                     System.out.println("day(" + i + "): " + day);
                     System.out.println("title(" + i + "): " + title);
-//                    System.out.println("content(" + i + "): " + content);
                     System.out.println();
                 }
             } catch (Exception e) {
@@ -116,7 +105,7 @@ public class ListFrag extends Fragment {
             return items.size();
         }
 
-        public void addItem(ListItem item) {
+        public void addItem(PushListItem item) {
             items.add(item);
         }
 
@@ -132,21 +121,12 @@ public class ListFrag extends Fragment {
 
         @Override
         public View getView(int position, View convertView, ViewGroup viewGroup) {
-            ListItemView view = new ListItemView(getActivity());
+            PushListItemView view = new PushListItemView(getActivity());
 
-            ListItem item = items.get(position);
-//            view.setName(item.getName());
+            PushListItem item = items.get(position);
             view.setTitle(item.getTitle());
-//            view.setMobile(item.getMobile());
             view.setDay(item.getDay());
-
-//            view.setAge(item.getAge());
-            view.setWriter(item.getWriter());
-
-            view.setImage(item.getResId());
-
-//            view.setContent(item.getContent());
-
+            view.setBody(item.getBody());
 
             return view;
         }
