@@ -6,13 +6,14 @@ import android.graphics.Color;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.util.AttributeSet;
-import android.widget.TextView;
+//import android.widget.TextView;
+import androidx.appcompat.widget.AppCompatTextView;
 
 
 /**
  * Created by matt on 5/27/14.
  */
-public class SecretTextView extends TextView {
+public class SecretTextView extends AppCompatTextView {
     private String mTextString;
     private SpannableString mSpannableString;
 

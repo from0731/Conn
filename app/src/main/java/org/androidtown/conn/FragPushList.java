@@ -1,6 +1,5 @@
 package org.androidtown.conn;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import org.androidtown.conn.push.PushListItem;
+import org.androidtown.conn.push.PushListItemView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

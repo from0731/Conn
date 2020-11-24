@@ -1,4 +1,4 @@
-package org.androidtown.conn;
+package org.androidtown.conn.push;
 
 public class PushListItem {
 

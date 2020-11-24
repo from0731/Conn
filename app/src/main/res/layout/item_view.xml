@@ -12,13 +12,13 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:tint="@color/icons"
-            android:src="@mipmap/ic_favorite_black_24dp"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:tint="@color/icons"
+        android:src="@mipmap/ic_favorite_black_24dp"/>
     </RelativeLayout>
 
 
@@ -30,13 +30,13 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            android:tint="@color/icons"
-            android:src="@mipmap/ic_delete_black_24dp"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:tint="@color/icons"
+        android:src="@mipmap/ic_delete_black_24dp"/>
     </RelativeLayout>
 
 
@@ -52,6 +52,8 @@
             android:id="@+id/image"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
             app:placeholderImage="@mipmap/ic_book_black_24dp"
             app:roundAsCircle="true"/>
@@ -83,13 +85,13 @@
             android:singleLine="true"
             android:textSize="12dp" />
 
-        <TextView
-            android:id="@+id/content"
-            android:layout_below="@+id/day"
-            android:layout_alignLeft="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/content"-->
+<!--            android:layout_below="@+id/day"-->
+<!--            android:layout_alignLeft="@+id/title"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textSize="12dp" />-->
     </RelativeLayout>
 
 

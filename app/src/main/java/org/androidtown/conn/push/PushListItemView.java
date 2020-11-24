@@ -1,4 +1,4 @@
-package org.androidtown.conn;
+package org.androidtown.conn.push;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.androidtown.conn.R;
 
 
 public class PushListItemView extends LinearLayout {

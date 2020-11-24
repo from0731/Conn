@@ -11,7 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Task extends AsyncTask<String, Void, String> {
-    public static String ip ="172.30.1.6:8081"; //자신의 IP번호
+    public static String ip ="172.30.1.24:8081"; //자신의 IP번호
     String sendMsg, receiveMsg;
         String serverip = "http://"+ip+"/Conn/list.jsp"; // 연결할 jsp주소
 

@@ -20,6 +20,8 @@ public class FragCreate extends Fragment {
 
     public static final int REQUEST_CODE_ANOTHER = 1001;
 
+
+
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.create, container, false);
 
@@ -29,6 +31,10 @@ public class FragCreate extends Fragment {
         Geobtn = rootView.findViewById(R.id.geobtn);
         UploadBtn = rootView.findViewById(R.id.uploadBtn);
         Maps = rootView.findViewById(R.id.maps);
+
+
+
+
 
 
         Geobtn.setOnClickListener(new View.OnClickListener() {

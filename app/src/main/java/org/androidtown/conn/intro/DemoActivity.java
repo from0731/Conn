@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import org.androidtown.conn.DetailActivity;
 import org.androidtown.conn.MainActivity;
 import org.androidtown.conn.R;
 
@@ -18,16 +17,16 @@ public class DemoActivity extends Activity {
 
     SecretTextView secretTextView;
     Button change;
-    public static final int REQUEST_CODE_ANOTHER = 1001;
+//    public static final int REQUEST_CODE_ANOTHER = 1001;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.mmain);
 
         secretTextView = (SecretTextView)findViewById(R.id.textview);
-        secretTextView.setDuration(7000);
+        secretTextView.setDuration(5000);
         secretTextView.setIsVisible(true);
         secretTextView.toggle();
 
@@ -43,7 +42,7 @@ public class DemoActivity extends Activity {
 			@Override
 			public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivityForResult(intent, REQUEST_CODE_ANOTHER);
+                startActivity(intent);
             }
         });
     }

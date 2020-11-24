@@ -176,8 +176,8 @@ public class SwipeToAction {
     }
 
     private void resolveItem(int adapterPosition) {
-        initViewForItem((ViewHolder) recyclerView.findViewHolderForAdapterPosition(adapterPosition));
-    }
+            initViewForItem((ViewHolder) recyclerView.findViewHolderForAdapterPosition(adapterPosition));
+        }
 
     private void initViewForItem(ViewHolder viewHolder) {
         touchedViewHolder = viewHolder;
@@ -402,7 +402,9 @@ public class SwipeToAction {
             swipeQueue.add(position + 1);
             return;
         }
-        resolveItem(position);
+//        if (position != 0) {
+            resolveItem(position);
+//        }
         revealRight();
         swipeRight();
     }
@@ -471,6 +473,7 @@ public class SwipeToAction {
 
         @Override
         public View getFront() {
+
             return front;
         }
 

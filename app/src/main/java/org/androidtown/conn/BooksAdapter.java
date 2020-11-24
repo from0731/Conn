@@ -33,7 +33,6 @@ public class BooksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             authorView = (TextView) v.findViewById(R.id.author);
             dayView = (TextView) v.findViewById(R.id.day);
             contentView = (TextView) v.findViewById(R.id.content);
-
             imageView = (SimpleDraweeView) v.findViewById(R.id.image);
         }
     }
@@ -67,8 +66,8 @@ public class BooksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         BookViewHolder vh = (BookViewHolder) holder;
         vh.titleView.setText(item.getTitle());
         vh.authorView.setText(item.getContent());
-        vh.dayView.setText(item.getDay());
-        vh.contentView.setText(item.getWriter());
+        vh.dayView.setText(item.getWriter() + " / " + item.getDay());
+//        vh.contentView.setText(item.getWriter());
 //        vh.imageView.setImageURI(Uri.parse(item.getImageUrl()));
         vh.imageView.setImageURI(Uri.parse("https://image.aladin.co.kr/product/25398/90/cover500/8954675379_1.jpg"));
 

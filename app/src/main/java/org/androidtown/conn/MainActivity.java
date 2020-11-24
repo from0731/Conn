@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -14,6 +13,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.messaging.FirebaseMessaging;
+
+import androidx.appcompat.widget.Toolbar;
+import org.androidtown.conn.boommenu.BoomMenuButton;
+import org.androidtown.conn.boommenu.ButtonEnum;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,11 +31,22 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int REQUEST_CODE_ANOTHER = 1001;
 
+    private BoomMenuButton bmb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+
+        bmb = (BoomMenuButton) findViewById(R.id.bmb);
+        assert bmb != null;
+        bmb.setButtonEnum(ButtonEnum.Ham);
+        for (int i = 0; i < bmb.getPiecePlaceEnum().pieceNumber(); i++)
+            bmb.addBuilder(BuilderManager.getHamButtonBuilderWithDifferentPieceColor());
+
 
         setTitle("리포터");
 
@@ -125,19 +140,19 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_search :
-
-                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
-                startActivityForResult(intent, REQUEST_CODE_ANOTHER);
-
-                // TODO : process the click event for action_search item.
-                return true ;
-            // ...
-            default :
-                return super.onOptionsItemSelected(item) ;
-        }
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.action_search :
+//
+//                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+//                startActivityForResult(intent, REQUEST_CODE_ANOTHER);
+//
+//                // TODO : process the click event for action_search item.
+//                return true ;
+//            // ...
+//            default :
+//                return super.onOptionsItemSelected(item) ;
+//        }
+//    }
 }
