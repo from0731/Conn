@@ -63,5 +63,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="445194f3a1ab1d019cab226419f4caee"/>
     </application>
 </manifest>
